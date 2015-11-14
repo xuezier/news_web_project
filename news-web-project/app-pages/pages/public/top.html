@@ -1,0 +1,55 @@
+{{useCss "/app-pages/css/public/media.scss","*"}}
+<div class="_top">
+    <div class="_top_wide">
+        <div class="_left">
+            <div class="icon-menu" event-click="{{'$Event.top.show_top_nav'}}"></div>
+            <div class="_logo">
+                <href to="/main.html">
+                    <img src="/images/public/logo.png" />
+                </href>
+            </div>
+            <div class="_navs">
+                <href to="/main.html" class="item">
+                    首页
+                    <div class="_mark"></div>
+                </href>
+                <href to="/news.html" class="item">
+                    资讯
+                    <div class="_mark"></div>
+                </href>
+                <href to="tech.html" class="item">
+                    技术
+                    <div class="_mark"></div>
+                </href>
+                <href to="circle.html" class="item">
+                    聊客
+                    <div class="_mark"></div>
+                </href>
+            </div>
+        </div>
+        <div class="_right">
+            <div class="menus">
+                <href to="/sign.html" class="item icon-user">
+                    登陆/注册
+                </href>
+            </div>
+        </div>
+    </div>
+
+    <div class="_top_small">
+        <div class="_navs {{$Cache.top.show_top_nav&&'focus'}}">
+            <href event-click="{{'$Event.top.show_top_nav'}}" to="/main.html" class="item">
+                首页
+            </href>
+            <href event-click="{{'$Event.top.show_top_nav'}}" to="/news.html" class="item">
+                资讯
+            </href>
+            <href event-click="{{'$Event.top.show_top_nav'}}" to="tech.html" class="item">
+                技术
+            </href>
+            <href event-click="{{'$Event.top.show_top_nav'}}" to="circle.html" class="item">
+                聊客
+            </href>
+        </div>
+    </div>
+</div>

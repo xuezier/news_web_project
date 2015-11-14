@@ -1,0 +1,218 @@
+@charset "utf-8";
+@import 'color.scss';
+
+@mixin hr($color){
+	hr{
+		clear:both;
+		border:0;
+		width: 100%;
+		height: 1px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		background-color: $color;
+	}
+}
+
+
+//透明度
+@mixin BgTransparent($color,$number1,$number2){
+	background: rgba($color, $number1) !important;  //标准浏览器通用  
+    background-color: $color;
+    position: relative;
+    filter: alpha(opacity=$number2);
+}	
+
+/* BackgroundTeansparent 背景透明度 包括内容 */
+@mixin BgTransparentAll($number1,$number2){
+	    /* older safari/Chrome browsers */  
+	    -webkit-opacity: $number1;  
+	    /* Netscape and Older than Firefox 0.9 */  
+	    -moz-opacity: $number1;  
+	    /* Safari 1.x (pre WebKit!) 老式khtml内核的Safari浏览器*/  
+	    -khtml-opacity: $number1;  
+	    /* IE9 + etc...modern browsers, Firefox */  
+	    opacity: $number1;  
+	    /* IE 4-9 */  
+	    filter:alpha(opacity=$number2);  
+	    /*This works in IE 8 & 9 too*/  
+	    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$number2})";  
+	    /*IE4-IE9*/  
+	    *filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$number2}); 
+
+} 
+
+
+/*垂直渐变*/
+@mixin VerticalGradient($color1,$color2) {
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$color1}, endColorstr=#{$color2}, GradientType='0'); /* IE 6,7,8 */
+	background-image: -moz-linear-gradient(top, $color1, $color2); /* Firefox */
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, $color1), color-stop(1, $color2)); /* Saf4+, Chrome */	
+	background: -webkit-linear-gradient(top, $color1,$color2); /* Safari5.1 Chrome10+ */
+	background:-ms-linear-gradient(top, $color1, $color2); /* IE10+ */
+	background: -o-linear-gradient(top, $color1, $color2);  /* Opera 11.10+ */ 
+}
+
+/*圆角*/
+@mixin radius($number){
+    -moz-border-radius: #{$number}px;      /* Gecko browsers */
+    -webkit-border-radius: #{$number}px;   /* Webkit browsers */
+    border-radius:#{$number}px;            /* W3C syntax */
+
+}
+
+
+
+/*阴影*/
+@mixin shadow($rownum,$colnum,$dimnum,$color) {
+    -moz-box-shadow: $rownum $colnum $dimnum $color;
+    -webkit-box-shadow: $rownum $colnum $dimnum $color;
+    box-shadow: $rownum $colnum $dimnum $color;
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#{$color}')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#{$color}');
+}
+
+
+/*换行*/
+@mixin newLine{
+	white-space: normal;
+    word-spacing: normal;
+    word-wrap:break-word;
+    word-break:break-all;
+}
+
+/*模糊*/
+@mixin blur($number){
+	filter:blur(#{$number}px);
+	-webkit-filter:blur(#{$number}px);
+	-moz-filter:blur(#{$number}px);
+	-o-filter:blur(#{$number}px);
+	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='#{$number}');
+}
+
+/* 放射渐变 */
+@mixin radial-gradient($color1,$color2,$color3){
+	 background-image: -webkit-gradient(radial, 45 45, 10, 52 50, 30, from($color1), to($color2), color-stop(90%, $color3)),
+            -webkit-gradient(radial, 105 105, 20, 112 120, 50, from($color1), to($color2), color-stop(75%, $color3)),
+            -webkit-gradient(radial, 95 15, 15, 102 20, 40, from($color1), to($color2), color-stop(80%, $color3)),
+            -webkit-gradient(radial, 0 150, 50, 0 140, 90, from($color1), to($color2), color-stop(80%, $color3)),
+}
+
+/*变换动画*/
+@mixin comic_1($time,$speed){
+	-webkit-transition: #{$time}s ease-in-out;
+    -moz-transition: #{$time}s ease-in-out;
+    -ms-transition: #{$time}s ease-in-out;
+    -o-transition: #{$time}s ease-in-out;
+    transition: #{$time}s ease-in-out;
+
+	transform:translateZ(#{$speed}px);
+	-moz-transform:translateZ(#{$speed}px);
+	-webkit-transform:translateZ(#{$speed}px);
+	-o-transform:translateZ(#{$speed}px);
+}
+
+@mixin comic($time) {
+	-webkit-transition: #{$time}s ease-in-out;
+    -moz-transition: #{$time}s ease-in-out;
+    -ms-transition: #{$time}s ease-in-out;
+    -o-transition: #{$time}s ease-in-out;
+    transition: #{$time}s ease-in-out;
+    /*解决闪屏问题*/
+    
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -ms-perspective: 1000;
+    perspective: 1000;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+@mixin transform3d($x, $y, $z){
+    -webkit-transform: translate3d($x, $y, $z);
+    -moz-transform: translate3d($x, $y, $z);
+    -ms-transform: translate3d($x, $y, $z);
+    transform: translate3d($x, $y, $z);
+}
+@mixin transitiontime($time){
+	-webkit-transition: #{$time}s ease-in-out;
+    -moz-transition: #{$time}s ease-in-out;
+    -ms-transition: #{$time}s ease-in-out;
+    -o-transition: #{$time}s ease-in-out;
+    transition: #{$time}s ease-in-out;
+    // -webkit-backface-visibility: hidden;
+    // -moz-backface-visibility: hidden;
+    // -ms-backface-visibility: hidden;
+    // backface-visibility: hidden;
+    // -webkit-perspective: 1000;
+    // -moz-perspective: 1000;
+    // -ms-perspective: 1000;
+    // perspective: 1000;
+}
+
+/*强制不换行*/
+@mixin breakLine{
+	white-space:nowrap;
+}
+
+
+/*指定行数显示省略号*/
+@mixin Line($number){
+	@if($number==1){
+		white-space:nowrap;
+		text-overflow:ellipsis;
+		overflow:hidden;
+		-webkit-text-overflow:ellipsis;
+	}@else{
+		overflow: hidden;
+		word-break: break-word;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: #{$number};
+		-webkit-box-orient: vertical;
+	}
+}
+
+/*文字不被选中*/
+@mixin unselect(){
+	-moz-user-select: none; /*火狐*/
+    -webkit-user-select: none;  /*webkit浏览器*/
+    -ms-user-select: none;   /*IE10*/
+    -khtml-user-select: none; /*早期浏览器*/
+    user-select: none;
+}
+
+// 定义二段循环动画
+@mixin animation($name, $time) {
+    @include comic(2);
+    @include repeat_comic($name);
+    animation: $name #{$time}s infinite linear;
+}
+
+
+// 自定义自旋循环动画
+@mixin repeat_comic($name) {
+    @keyframes $name {
+        0% {
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -moz-transform: rotate(359deg);
+            -o-transform: rotate(359deg);
+            -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+        }
+    }
+}
+
+
+

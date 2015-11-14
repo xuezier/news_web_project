@@ -1,0 +1,186 @@
+@import"../openscss/color";
+@import"../openscss/model";
+@media screen and (max-width: 700px) {
+    ._main {
+        .content_top {
+        	padding-bottom: 0!important;
+            .image_wall {
+                .button {
+                    display: none!important;
+                }
+            }
+        }
+        .content {
+        	margin-top: 0!important;
+            .content_nav {
+                .left {
+                    display: none!important;
+                }
+                .right {
+                    width: 100%!important;
+                    text-align: left!important;
+                }
+            }
+            .content_body {
+                .articles {
+                    width: 100%!important;
+                    border-right: none!important;
+                    border-bottom: 1px solid $grayLight;
+                }
+                .com {
+                    width: 100%!important;
+                }
+            }
+        }
+    }
+}
+._main {
+    .content_top {
+        background-image: url("/images/bg.png");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        padding-bottom: 50px;
+        .image_wall {
+            width: 100%;
+            max-width: 1200px;
+            max-height: 450px;
+            position: relative;
+            overflow: hidden;
+            .box {
+                width: 100%;
+                max-height: 450px;
+                @include breakLine;
+                @include comic(.3);
+                img {
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 100%;
+                    height: 100%;
+                    max-height: 450px;
+                }
+            }
+            .button {
+                position: absolute;
+                bottom: 10px;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                .item {
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 6px;
+                    margin: 0 10px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background-color: $white;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .content {
+        width: 100%;
+        max-width: 1200px;
+        min-height: 400px;
+        margin-top: -50px;
+        background-color: $white;
+        box-shadow: 0 1px 7px 0 #aaa;
+        .content_nav {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            border-bottom: 1px solid $grayLight;
+            .left {
+                box-sizing: border-box;
+                display: inline-block;
+                vertical-align: top;
+                height: 50px;
+                width: 20%;
+                padding: 0 10px;
+                font-size: 18px;
+            }
+            .right {
+                display: inline-block;
+                vertical-align: top;
+                height: 50px;
+                width: 80%;
+                text-align: right;
+                .item {
+                    font-size: 14px;
+                    display: inline-block;
+                    vertical-align: top;
+                    height: 50px;
+                    padding: 0 10px;
+                    &:hover {
+                        color: $orange;
+                    }
+                }
+            }
+        }
+        .content_body {
+            width: 100%;
+            .articles {
+                display: inline-block;
+                vertical-align: top;
+                width: 80%;
+                box-sizing: border-box;
+                padding: 15px 10px;
+                border-right: 1px solid $grayLight;
+                .article {
+                    width: 100%;
+                    margin-bottom: 15px;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    .title {
+                        font-size: 15px;
+                        color: $themeColor;
+                        cursor: pointer;
+                        href {
+                            &:visited {
+                                color: $grayLight;
+                            }
+                        }
+                        &:hover {
+                            color: $orange;
+                        }
+                    }
+                    .info {
+                        padding: 5px 0;
+                        font-size: 12px;
+                        .plate {
+                            display: inline-block;
+                            vertical-align: middle;
+                            padding: 5px;
+                            background-color: $grayLighter;
+                            margin-right: 10px;
+                        }
+                        .time {
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+                    }
+                    .text {
+                        width: 100%;
+                        line-height: 20px;
+                        font-size: 13px;
+                        @include Line(2);
+                    }
+                }
+            }
+            .com {
+                display: inline-block;
+                vertical-align: top;
+                min-width: 20%;
+                text-align: center;
+                box-sizing: border-box;
+                padding: 15px 10px;
+                img {
+                    display: block;
+                    width: 80%;
+                    margin: 15px auto;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,124 @@
+{{useCss "/app-pages/css/pc/main.scss"}}
+<div class="_main">
+    <div class="content_top">
+        {{#> "imagewall"}}
+    </div>
+    <div class="content">
+        <div class="content_nav">
+            <div class="left">
+                全部
+            </div>
+            <div class="right">
+                <href class="item" href="/main.html">全部</href>
+                <href class="item" href="/main.html?type=2">推荐</href>
+                <href class="item" href="/main.html?type=3">热门</href>
+            </div>
+        </div>
+        <div class="content_body">
+            <div class="articles">
+                <div class="article">
+                    <div class="title">
+                    	<href to="/article.html">
+                        Windows上常用RSS阅读应用
+                        </href>
+                    </div>
+                    <div class="info">
+                        <div class="plate">用户园地</div>
+                        <div class="time">2015-11-15 13:11:11</div>
+                    </div>
+                    <div class="text">
+                    	WinEcos社区目前已经可以订阅RSS地址，所以写个RSS应用整理。 1.NextgenReader 作为一款Feedly非官方应用，体验最好，历时最长，保持更新，名气最大。 下载地址： Nextgen Reader [url]..
+                    </div>
+                </div>
+                <div class="article">
+                    <div class="title">
+                        Windows上常用RSS阅读应用
+                    </div>
+                    <div class="info">
+                        <div class="plate">用户园地</div>
+                        <div class="time">2015-11-15 13:11:11</div>
+                    </div>
+                </div>
+            </div>
+            <div class="com">
+                <a href="http://microsoft.com" target="_blank">
+                    <img src="/images/com/microsoft.jpg" />
+                </a>
+                <a href="http://microsoft.com" target="_blank">
+                    <img src="/images/com/microsoft.jpg" />
+                </a>
+                <a href="http://microsoft.com" target="_blank">
+                    <img src="/images/com/microsoft.jpg" />
+                </a>
+                <a href="http://microsoft.com" target="_blank">
+                    <img src="/images/com/microsoft.jpg" />
+                </a>
+                <a href="http://microsoft.com" target="_blank">
+                    <img src="/images/com/microsoft.jpg" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<xmp type="template" name="imagewall">
+    <div class="image_wall">
+        <div class="box">
+            <img src="/images/test/wall1.png" />
+            <img src="/images/test/wall2.jpg" />
+            <img src="/images/test/wall3.jpg" />
+            <img src="/images/test/wall4.jpg" />
+        </div>
+        <div class="button">
+            <div data="0" class="item" event-click="{{'$Event.main.imagewall_change'}}"></div>
+            <div data="1" class="item" event-click="{{'$Event.main.imagewall_change'}}"></div>
+            <div data="2" class="item" event-click="{{'$Event.main.imagewall_change'}}"></div>
+            <div data="3" class="item" event-click="{{'$Event.main.imagewall_change'}}"></div>
+        </div>
+    </div>
+    <script type="text/vm">
+        function(vm) {
+        	var box = vm.queryElement({
+        		className: "box"
+        	})[0];
+        	require(["jQuery"], function() {
+        		var $box = $(box);
+        		var imgs = $(box).find("img");
+        		var len = imgs.length;
+        		if (len > 1) {
+        			var _i = 0;
+        			var _s;
+        			var _imagewall_t;
+        			_imagewall_ti = setInterval(function() {
+        				_s = "translateX(" + -((_i % len) * 100) + "%)";
+        				$box.css({
+        					transform: _s,
+        					"-webkit-transform": _s
+        				});
+        				_i += 1;
+        			}, 5000);
+        			console.log(imgs);
+        			vm.set("$Event.main.imagewall_change", function() {
+        				clearInterval(_imagewall_ti);
+        				var _count = parseInt($(this).attr("data"));
+        				_i = _count;
+        				_s = "translateX(" + -((_i % len) * 100) + "%)";
+        				$box.css({
+        					transform: _s,
+        					"-webkit-transform": _s
+        				});
+        				_i += 1;
+        				_imagewall_ti = setInterval(function() {
+        					_s = "translateX(" + -((_i % len) * 100) + "%)";
+        					$box.css({
+        						transform: _s,
+        						"-webkit-transform": _s
+        					});
+        					_i += 1;
+        				}, 5000);
+        			});
+        		};
+        	});
+        };
+    </script>
+</xmp>
